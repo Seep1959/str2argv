@@ -14,6 +14,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "str2argv.h"
 
 #define UNUSED    __attribute__((__unused__))
@@ -41,8 +44,10 @@ main(int argc UNUSED, char *argv[] UNUSED)
       fflush(stdout);
 
       if (str2argv(s, &margc, &margv, &errmsg) == 0) {
-         for (i = 0; i < margc; i++)
-            printf("\tmargv[%d] = '%s'\n", i, margv[i]); fflush(stdout);
+         for (i = 0; i < margc; i++) {
+            printf("\tmargv[%d] = '%s'\n", i, margv[i]);
+            fflush(stdout);
+         }
 
          untoked = argv2str(margc, margv);
          printf("un-toked string: \"%s\"\n", untoked);
