@@ -225,7 +225,10 @@ str2argv(const char *str, int *argc, char ***argv, const char **errmsg)
       return 1;
    }
 
-   (*argv)[*argc] = NULL;/*XXX*/
+   if ((*argv)[*argc] != NULL) {
+      free((*argv)[*argc]);
+      (*argv)[*argc] = NULL;/*XXX*/
+   }
 
    return 0;
 }
